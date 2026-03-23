@@ -1,0 +1,18 @@
+class Solution {
+    public long pickGifts(int[] n, int k) {
+      PriorityQueue<Integer> q=new PriorityQueue<>(Collections.reverseOrder());
+      for(int i:n){
+        q.add(i);
+      }
+      for(int i=0;i<k;i++){
+        int m=q.poll();
+        int val=(int)Math.sqrt(m);
+        q.add(val);
+      }
+      long ans=0;
+      for(int i:q){
+         ans+=i;
+      }
+      return ans;
+    }
+}
