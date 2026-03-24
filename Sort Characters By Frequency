@@ -1,0 +1,32 @@
+class Solution {
+    public String frequencySort(String s) {
+       HashMap<Character,Integer> hm=new HashMap<>();
+       for(int i=0;i<s.length();i++){
+        char ch=s.charAt(i);
+        hm.put(ch,hm.getOrDefault(ch,0)+1);
+       }
+       PriorityQueue<Freq> q=new PriorityQueue<>((a,b)->b.v-a.v);
+       for(char ch:hm.keySet()){
+       Freq temp=new Freq(ch,hm.get(ch));
+       q.add(temp);
+       }
+       StringBuilder ans=new StringBuilder();
+       while(!q.isEmpty()){
+        Freq top=q.poll();
+        char ch=top.k;
+        int c=top.v;
+        for(int i=0;i<c;i++){
+            ans.append(ch);
+        }
+       }
+       return ans.toString();
+    }
+}
+class Freq{
+    char k;
+    int v;
+    Freq(char k,int v){
+        this.k=k;
+        this.v=v;
+    }
+}
